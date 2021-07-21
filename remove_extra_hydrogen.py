@@ -13,7 +13,6 @@ for files in os.listdir(directory):
 		os.chdir(directory)
 		asemof = read(files)
 		mof = bridge.get_structure(asemof)
-		#mof = pm.Structure.from_file('bor_sym_3_mc_0_sym_4_mc_1_L_19.cif',primitive=False) #read CIF as-is
 		nn_object = CrystalNN(x_diff_weight=0) #can optionally set search_cutoff=None
 
 		#ignore warnings about specifying oxidation states
@@ -31,7 +30,6 @@ for files in os.listdir(directory):
 					if not coord_num or coord_num != 1 or local_env[0]['site'].species_string == "Cu":
 						badidx.append(atomidx)
 
-#	for i in badidx:
 			mof.remove_sites(badidx)
 			os.chdir(write_dir)
 			print("Hey! It is writing stuff!")
